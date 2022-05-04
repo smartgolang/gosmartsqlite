@@ -54,6 +54,7 @@ func AddPerson(db *sql.DB, newPerson Person) {
 
 //!-UpsertPerson
 
+//!+SearchForPerson
 func SearchForPerson(db *sql.DB, searchString string) ([]Person, bool) {
 
 	rows, _ := db.Query("SELECT id, firstname, lastname, email FROM people WHERE firstname like '%" + searchString + "%' OR lastname like '%" + searchString + "%' OR email like '%" + searchString + "%'")
@@ -82,6 +83,8 @@ func SearchForPerson(db *sql.DB, searchString string) ([]Person, bool) {
 
 	return people, len(people) > 0
 }
+
+//!-SearchForPerson
 
 //!+List
 func List(db *sql.DB) []Person {
